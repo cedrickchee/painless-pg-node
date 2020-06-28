@@ -2,8 +2,16 @@ const Knex = require('knex');
 const connection = require('../knexfile');
 const { Model } = require('objection');
 
-const knexConnection = Knex(connection.production);
+// Initialize Knex.
+const development = process.env.NODE_ENV !== 'production';
+const knexConnection = Knex(development ? connection.development : connection.production);
 
+// Create or migrate:
+// knex.migrate.latest();
+
+// Bind all Models to a Knex instance. If you only have one database in
+// your server this is all you have to do. For multi database systems, see
+// the Model.bindKnex method.
 Model.knex(knexConnection);
 
 class Comment extends Model {
