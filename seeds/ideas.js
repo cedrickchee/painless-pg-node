@@ -7,7 +7,8 @@ exports.seed = function(knex) {
       return knex('ideas').insert([
         {creator: 'John', idea: 'Buy milk'},
         {creator: 'Alice', idea: 'Sleep'},
-        {creator: 'Jane', idea: 'Blog post'}
+        {creator: 'Jane', idea: 'Blog post'},
+        {creator: 'Chen', idea: 'Cook dinner'}
       ]);
     });
 };
