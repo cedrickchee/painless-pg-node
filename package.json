@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Knex and Objection.js app example",
   "repository": {
-    "url": "https://github.com/cedrickchee/knex-objection-app"
+    "url": "https://github.com/cedrickchee/painless-pg-node.git"
   },
   "main": "index.js",
   "scripts": {
