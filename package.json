@@ -1,7 +1,7 @@
 {
-  "name": "knex-objection-app",
+  "name": "painless-pg-node",
   "version": "0.0.1",
-  "description": "Knex and Objection.js app example",
+  "description": "A scaffold project for painless Node.js API development with SQL database",
   "repository": {
     "url": "https://github.com/cedrickchee/painless-pg-node.git"
   },
