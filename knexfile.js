@@ -8,6 +8,12 @@ module.exports = {
       filename: './exampledb.sqlite3'
     },
     useNullAsDefault: true,
+    migrations: {
+      directory: __dirname + '/db/migrations'
+    },
+    seeds: {
+      directory: __dirname + '/db/seeds/development'
+    },
     debug: true
   },
 
@@ -19,7 +25,11 @@ module.exports = {
       max: 10
     },
     migrations: {
+      directory: __dirname + '/db/migrations',
       tableName: 'knex_migrations'
+    },
+    seeds: {
+      directory: __dirname + '/db/seeds/production'
     }
   }
 
