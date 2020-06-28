@@ -7,6 +7,8 @@
   },
   "main": "index.js",
   "scripts": {
+    "dev": "cross-env NODE_ENV=development node app.js",
+    "start": "cross-env NODE_ENV=production node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -21,5 +23,8 @@
     "objection": "^2.2.0",
     "pg": "^8.2.1",
     "sqlite3": "^4.2.0"
+  },
+  "devDependencies": {
+    "cross-env": "^6.0.3"
   }
 }
