@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const parser = require('body-parser');
+const morgan = require('morgan');
 
 const ideas = require('./controllers/ideas');
 
@@ -11,6 +12,7 @@ const port = process.env.PORT || 3000;
 
 app.set('port', port);
 app.set('x-powered-by', false);
+app.use(morgan('tiny'));
 
 app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
