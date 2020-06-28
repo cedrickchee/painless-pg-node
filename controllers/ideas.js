@@ -28,11 +28,37 @@ router.get('/:id', async (req, res) => {
 router.post('/:id/comments', async (req, res) => {
     const idea = await Idea.query().findById(req.params.id);
 
-    await idea
-        .$relatedQuery('comments')
-        .insert(req.body);
+    await idea.$relatedQuery('comments').insert(req.body);
 
     res.send(idea);
+});
+
+// Creates a new idea
+// curl -H "Content-Type: application/json" -d '{"idea":"My brilliant idea", "creator":"Chen"}' http://localhost:3000/ideas
+router.post('/', async (req, res) => {
+    const newIdea = req.body;
+
+    const idea = await Idea.query()
+        .allowInsert('[idea, creator]') // only allows the idea and creator fields for safety
+        .insert(newIdea);
+
+    res.send(idea);
+});
+
+// Deletes an idea
+// curl -X DELETE http://localhost:3000/ideas/4
+router.delete('/:id', async (req, res) => {
+    await Idea.query().deleteById(req.params.id);
+
+    res.redirect('/ideas');
+});
+
+// Deletes a comment
+// curl -X DELETE http://localhost:3000/ideas/6/comments/1
+router.delete('/:id/comments/:commentId', async (req, res) => {
+    await Comment.query().deleteById(req.params.commentId);
+
+    res.redirect(`/ideas/${req.params.id}`);
 });
 
 module.exports = router;
