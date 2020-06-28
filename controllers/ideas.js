@@ -15,4 +15,24 @@ router.get('/', async (req, res) => {
     res.json(ideas);
 });
 
+// Get one idea by id
+router.get('/:id', async (req, res) => {
+    // Also fetches the related comments using the .eager method
+    const idea = await Idea.query().findById(req.params.id).eager('comments');
+
+    res.json(idea);
+});
+
+// Creates a new comment that is a child of an idea
+// curl -H "Content-Type: application/json" -d '{"comment":"Good idea", "creator":"Chen"}' http://localhost:3000/ideas/6/comments
+router.post('/:id/comments', async (req, res) => {
+    const idea = await Idea.query().findById(req.params.id);
+
+    await idea
+        .$relatedQuery('comments')
+        .insert(req.body);
+
+    res.send(idea);
+});
+
 module.exports = router;
