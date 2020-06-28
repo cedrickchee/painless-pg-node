@@ -19,5 +19,10 @@ app.use(cors());
 app.use('/ideas', ideas);
 
 app.listen(port, () => {
-    console.log(`Server is up and running on port ${port}`);
+    const development = process.env.NODE_ENV !== 'production';
+
+    console.debug('NODE_ENV:', process.env.NODE_ENV);
+    console.debug('development:', development);
+
+    console.log(`${app.get('env')} server is up and running on port ${port}`);
 });
