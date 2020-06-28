@@ -5,10 +5,10 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('ideas').insert([
-        {creator: 'John', idea: 'Buy milk'},
-        {creator: 'Alice', idea: 'Sleep'},
-        {creator: 'Jane', idea: 'Blog post'},
-        {creator: 'Chen', idea: 'Cook dinner'}
+        {creator: 'John', idea: 'Buy milk', completed: false},
+        {creator: 'Alice', idea: 'Sleep', completed: false},
+        {creator: 'Jane', idea: 'Blog post', completed: false},
+        {creator: 'Chen', idea: 'Cook dinner', completed: true},
       ]);
     });
 };
