@@ -18,7 +18,7 @@ app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
 app.use(cors());
 
-app.use('/ideas', ideas);
+app.use('/api/v1/ideas', ideas);
 
 app.listen(port, () => {
     const development = process.env.NODE_ENV !== 'production';
