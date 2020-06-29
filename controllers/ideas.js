@@ -24,7 +24,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Creates a new comment that is a child of an idea
-// curl -H "Content-Type: application/json" -d '{"comment":"Good idea", "creator":"Chen"}' http://localhost:3000/ideas/6/comments
+// curl -H "Content-Type: application/json" -d '{"comment":"Good idea", "creator":"Chen"}' http://localhost:3000/api/v1/ideas/6/comments
 router.post('/:id/comments', async (req, res) => {
     const idea = await Idea.query().findById(req.params.id);
 
@@ -34,7 +34,7 @@ router.post('/:id/comments', async (req, res) => {
 });
 
 // Creates a new idea
-// curl -H "Content-Type: application/json" -d '{"idea":"My brilliant idea", "creator":"Chen"}' http://localhost:3000/ideas
+// curl -H "Content-Type: application/json" -d '{"idea":"My brilliant idea", "creator":"Chen"}' http://localhost:3000/api/v1/ideas
 router.post('/', async (req, res) => {
     const newIdea = req.body;
 
@@ -46,7 +46,7 @@ router.post('/', async (req, res) => {
 });
 
 // Deletes an idea
-// curl -X DELETE http://localhost:3000/ideas/4
+// curl -X DELETE http://localhost:3000/api/v1/ideas/4
 router.delete('/:id', async (req, res) => {
     await Idea.query().deleteById(req.params.id);
 
@@ -54,7 +54,7 @@ router.delete('/:id', async (req, res) => {
 });
 
 // Deletes a comment
-// curl -X DELETE http://localhost:3000/ideas/6/comments/1
+// curl -X DELETE http://localhost:3000/api/v1/ideas/6/comments/1
 router.delete('/:id/comments/:commentId', async (req, res) => {
     await Comment.query().deleteById(req.params.commentId);
 
