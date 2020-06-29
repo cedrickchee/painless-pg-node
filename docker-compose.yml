@@ -1,0 +1,32 @@
+version: "3.7"
+services:
+  api:
+    build: .
+    depends_on:
+      - db
+    ports:
+      - ${PORT}:${PORT}
+      - "9229:9229"
+    environment:
+      PORT: ${PORT}
+      NODE_ENV: ${NODE_ENV}
+      DATABASE_URL: "postgres://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:${PG_CONTAINER_PORT}/${PG_DB}"
+    network_mode: "bridge"
+    links:
+      - "db"
+
+  db:
+    image: postgres:12.3-alpine
+    restart: always
+    ports:
+      - ${PG_HOST_PORT}:${PG_CONTAINER_PORT}
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DB}
+    network_mode: "bridge"
+
+networks:
+  default:
+    external:
+      name: bridge
