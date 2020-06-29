@@ -9,6 +9,8 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon --inspect=0.0.0.0:9229 app.js",
     "start": "cross-env NODE_ENV=production node app.js",
+    "migrate:dev": "cross-env NODE_ENV=development knex migrate:latest",
+    "migrate:prod": "cross-env NODE_ENV=production knex migrate:latest",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -28,5 +30,8 @@
   "devDependencies": {
     "cross-env": "^6.0.3",
     "nodemon": "^2.0.4"
+  },
+  "engines": {
+    "node": "^12.16.0"
   }
 }
